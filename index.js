@@ -47,7 +47,3 @@ server.listen(process.env.PORT, function (err) {
     if (err) throw err;
     console.log(`Server is runing on port: ${process.env.PORT}`)
 });
-
-
-console.log("HELLO WORLD");
-console.log("HELLO WORLD");
