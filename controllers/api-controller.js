@@ -16,6 +16,18 @@ class apiController {
             })
         }
     };
+    addUser = async (req ,res) => {
+        console.log(req.body, '+++===+++')
+
+        req.body.password = User.generateHash(req.body.password);
+        let userData = new userModel(req.body);
+        let saveData = await userData.save();
+
+        res.send({
+            data: saveData,
+            status: "Data updated success"
+        })
+    }
 }
 
 

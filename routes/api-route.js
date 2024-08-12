@@ -3,6 +3,7 @@ const router = express.Router();
 const apiController = require('../controllers/api-controller');
 
 router.get('/user/list',apiController.getUser);
+router.get('/user/add',apiController.addUser);
 
 
 // router.get('/user/list',function(req,res){

@@ -9,32 +9,13 @@ let app = express();
 require('./config/database')();
 const router = require('./routes/api-route');
 
-// console.log(__dirname)
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false}))
+app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, "public")))
-
 app.use('/api', router.route)
 
-// router.get('/user/list', function (req, res) {
-//     let userData = [
-//         {
-//             name: "John",
-//             email: "test@mailinator.com"
-//         },
-//         {
-//             name: "John",
-//             email: "test@mailinator.com"
-//         },
-//         {
-//             name: "John",
-//             email: "test@mailinator.com"
-//         }
-//     ]
-//     res.send({
-//         data: userData,
-//         status: "success"
-//     })
-// })
 app.get('/user', (req, res) => {
     res.send({
         data: [],
