@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Node-APP</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -13,7 +14,7 @@
                     <input type="text" name="name" placeholder="Enter Your Name">
                 </div>
                 <div class="input">
-                    <input type="text" name="password" placeholder="Enter Your Password">
+                    <input type="password" name="password" placeholder="Enter Your Password">
                 </div>
                 <div class="input">
                     <input type="email" name="email" placeholder="Enter Your Email">
@@ -27,69 +28,5 @@
             </div>
         </form>
     </div>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            transition: 0.3s;
-            font-family: "Fira Sans", sans-serif;
-        }
-        body{
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-        }
-        .container{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            background-image: url(./back.jpg);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        form{
-            background-color: rgba(0, 0, 0, 0.199);
-            backdrop-filter: blur(5px);
-            width: 40%;
-            height: 50%;
-            padding: 10px;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        form>div{
-            width: 50%;
-            height: 55%;
-        }
-        form>div>div{
-            width: 100%;
-            height: 19%;
-            margin: 2px 0;
-        }
-        input{
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 2px;
-            padding: 0 5px;
-        }
-        .btn{
-            background-color: rgb(240, 123, 56);
-            color: #ffffff;
-        }
-        .btn:hover{
-            cursor: pointer;
-            background-color: rgb(243, 101, 19);
-        }
-        input::after{
-            border-color: transparent;
-        }
-    </style>
 </body>
 </html>
