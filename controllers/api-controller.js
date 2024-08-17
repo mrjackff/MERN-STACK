@@ -1,6 +1,49 @@
 const userModel = require('../models/user-model');
 
+var jwt = require('jsonwebtoken');
+
 class apiController {
+    login = async (req, res) => {
+        try {
+            console.log(req.body)
+            let userData = await userModel.findOne({ email: req.body.email });
+            console.log(userData)
+            if (userData) {
+                let User = new userModel();
+                let checkPassword = User.compareHash(req.body.password, userData.password);
+                console.log(checkPassword)
+
+                if (checkPassword == true) {
+                    let payload = {
+                        id: userData._id,
+                        email: userData.email,
+                    }
+                    let expTime = '12h';
+
+                    var token = jwt.sign(payload, process.env.JWT_SECRET,{expiresIn:expTime});
+
+                    res.status(200).send({
+                        data:userData,
+                        message : "Login Successful",
+                        token: token,
+                    })
+                }
+                else {
+                    res.status(200).send({
+                        status:"Email or Password is Wrong"
+                    });
+                }
+            }else{
+                res.status(200).send({status: "User not found"});
+            }
+        }catch (err) {
+            console.log(err)
+            res.send({
+                data: err,
+                status: "Failed to connect with server please try again later !"
+            })
+        }
+    }
     getUser = async (req, res) => {
         try {
             let userData = await userModel.find({ age: { $eq: 20 } });
