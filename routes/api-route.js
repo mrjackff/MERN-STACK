@@ -8,6 +8,7 @@ router.get('/user/info/:id', apiController.getSingleUser);
 router.post('/user/update', apiController.updateUser);
 router.get('/user/delete/:id', apiController.deleteUser);
 router.post('/login', apiController.login);
+router.post('/signup', apiController.signup);
 
 module.exports = {
     route: router

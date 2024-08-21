@@ -44,6 +44,46 @@ class apiController {
             })
         }
     }
+
+    signup = async (req, res) => {
+        try {
+            console.log(req.body);
+            let existingUser = await userModel.findOne({
+                $or: [{ email: req.body.email }, { phoneNumber: req.body.phoneNumber }]
+            });
+            if (existingUser) {
+                return res.status(200).send({
+                    status: "User already exists with the given email or phone number"
+                });
+            }
+
+            let newUser = new userModel();
+            newUser.email = req.body.email;
+            newUser.phoneNumber = req.body.phoneNumber; 
+            newUser.password = newUser.generateHash(req.body.password);
+            newUser.name = req.body.name; 
+
+            let savedUser = await newUser.save();
+            console.log(savedUser);
+            let payload = {
+                email: savedUser.email,
+                phoneNumber: savedUser.phoneNumber,
+            };
+            let expTime = '12h';
+            var token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: expTime });
+            res.status(200).send({
+                data: savedUser,
+                message: "Signup Successful",
+                token: token,
+            });
+        } catch (err) {
+            console.log(err);
+            res.send({
+                data: err,
+                status: "Failed to connect with server, please try again later!"
+            });
+        }
+    };
     getUser = async (req, res) => {
         try {
             let userData = await userModel.find({ age: { $eq: 20 } });
